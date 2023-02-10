@@ -28,8 +28,16 @@ get_username <- function(email) {
   }
 }
 
-# List of emails
-emails <- c("email1@example.com", "email2@example.com", "email3@example.com")
+# List of emails. Set your file path.
+core_faculty_ischool <- read.csv(file = "~/corefaculty-ischool-uw.csv", header = FALSE, sep = "", stringsAsFactors = FALSE)
+
+# Create an empty list for emails. Add each row from the core_faculty_ischool data frame to the emails list.
+emails <- c()
+
+for(i in 1:nrow(core_faculty_ischool)){
+   emails <- append(emails, core_faculty_ischool[i,1])
+}
+
 
 # Use the function to get the username for each email
 usernames <- sapply(emails, get_username)
